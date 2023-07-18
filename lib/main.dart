@@ -1,20 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:realtimedb/realtime/homepage.dart';
+import 'package:realtimedb/realtime/add_post.dart';
 
-void main() {
-  runApp(const MainApp());
+void main() async {
+  runApp(const MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    return GetMaterialApp(
+      title: 'Tree Life',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.green,
       ),
+      getPages: [
+        GetPage(name: '/', page: () => const HomePage()),
+        GetPage(name: '/AddPost', page: () => const AddPost()),
+      ],
+      initialRoute: '/',
+ 
     );
   }
 }
+
+

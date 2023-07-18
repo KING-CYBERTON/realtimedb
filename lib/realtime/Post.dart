@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'event_model.dart';
 
 class PostCard extends StatelessWidget {
   final int index;
@@ -7,59 +8,91 @@ class PostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 5.0),
-      child: Container(
-        width: 300,
-        
-       
-        decoration: BoxDecoration(
-          
-            borderRadius: BorderRadius.circular(16.0), color: Colors.white),
-        child: Row(
-          children: [
-             Container(
-                child: Padding(
-              padding: EdgeInsets.all(0.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    backgroundImage: AssetImage('images/splash.jpg'),
-                  )
-                ],
-              ),
-            )),
-            Expanded(
-              child: Column(
-                children: [
-                  Container(
-                    width: 300,
-                    child:Text('kimani the genius dbfiibwibfiwebfiebfiebfwiebfiwebfwiebfwibweuwefuweuifbwuebfwuefwuefuwbefuiwefubefbwefbwuebuwbuwbuiwebuwbeueuibwuief'), 
-                  ),
-                  
-                  Container(
-                    width: 300,
-                    height: 200,
-                    decoration:const BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: AssetImage(
-                    'images/splash.jpg',
-                      )
-                      
-                    ),
-                    
-                    
-                   
-                  )),
-                ],
-              ),
-            ),
-          ],
+    
+    if (Post.posts[index].photo == null) {
+      return Container(
+      width: 300,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: Colors.greenAccent,
+          width: 3,
         ),
       ),
+      child: Row(
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(0.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  backgroundImage: AssetImage('images/splash.jpg'),
+                )
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                SizedBox(
+                  width: 300,
+                  child: Text(Post.posts[index].captions),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
+    } else {
+        return Container(
+      width: 300,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: Colors.greenAccent,
+          width: 3,
+        ),
+      ),
+      child: Row(
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(0.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  backgroundImage: AssetImage('images/splash.jpg'),
+                )
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                SizedBox(
+                  width: 300,
+                  child: Text(Post.posts[index].captions),
+                ),
+                Container(
+                    width: 300,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: AssetImage(
+                            Post.posts[index].photo!,
+                          )),
+                    )),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+    }
+  
   }
 }
 
@@ -68,13 +101,12 @@ class PostList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-         ListView.builder(
-            itemCount: 3,
-            itemBuilder: (BuildContext context, int index) {
-              return PostCard(
-                index: index,
-              );
-            });
+    return ListView.builder(
+        itemCount: Post.posts.length,
+        itemBuilder: (BuildContext context, int index) {
+          return PostCard(
+            index: index,
+          );
+        });
   }
 }
