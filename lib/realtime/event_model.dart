@@ -11,10 +11,11 @@ class Event {
     required this.eventdetails,
     required this.eventimage,
   });
+ 
 
   static List<Event> events = [
     Event(
-        userid: 'kimani',
+        userid: 'kimani', 
         eventtitle: 'treeplanting',
         eventdetails: 'save the world',
         eventimage: 'images/tree.jpg'),
@@ -41,6 +42,15 @@ class Post {
     this.photo,
     required this.captions,
   });
+
+
+  Map<String, dynamic> toJson() {
+    return {
+      'userid': userid,
+      'photo': photo,
+      'captions': captions   
+    };
+  }
 
   static List<Post> posts = [
     Post(userid: 'Wambui', captions: 'Lets make it green'),

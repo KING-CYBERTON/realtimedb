@@ -1,4 +1,10 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:realtimedb/realtime/CustomText.dart';
+import 'package:realtimedb/realtime/event_model.dart';
+
+import 'controller/realtime_coontoller.dart';
 
 class AddPost extends StatefulWidget {
   const AddPost({super.key});
@@ -10,6 +16,11 @@ class AddPost extends StatefulWidget {
 String dropdownValue = 'Select';
 
 class _AddPostState extends State<AddPost> {
+  final Realtime controller = Get.find();
+  final captioncontroller = TextEditingController();
+  String userid = 'kimani';
+
+  late String photo = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,19 +63,16 @@ class _AddPostState extends State<AddPost> {
                           onPressed: () {}, icon: const Icon(Icons.logout))
                     ],
                   ),
+                  CustomText(
+                      isPass: false,
+                      hintText: 'Enter captions',
+                      textInputType: TextInputType.text,
+                      textController: captioncontroller),
 
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        color: Colors.greenAccent,
-                        width: 3,
-                      ),
-                    ),
-                    child: const TextField(),
-                  ),
                   //should be a list of selected photos
-                  Image.asset('images/splash.jpg'),
+                   photo.isNotEmpty
+                    ? Image.network(photo)
+                    : Image.asset('images/Splash.jpg'),
 
                   const SizedBox(height: 20),
                   DropdownButton<String>(
@@ -82,7 +90,17 @@ class _AddPostState extends State<AddPost> {
                       );
                     }).toList(),
                   ),
-                  ElevatedButton(onPressed: () {}, child: const Text('Publish'))
+                  ElevatedButton(
+                      onPressed: () async {
+                        String captions = captioncontroller.text.trim();
+                        if (photo != null && photo.isNotEmpty) {
+                           controller.addPost(userid, photo, captions);
+                        } else {
+                          controller.addPost2(userid,captions);
+                        }
+                        
+                      },
+                      child: const Text('Publish'))
                 ]),
           ),
         ),

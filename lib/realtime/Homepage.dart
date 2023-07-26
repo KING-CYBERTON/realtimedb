@@ -1,5 +1,10 @@
+import 'dart:html';
+
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:realtimedb/realtime/controller/realtime_coontoller.dart';
+import 'package:realtimedb/realtime/event_model.dart';
 import 'package:realtimedb/realtime/events.dart';
 import 'package:realtimedb/realtime/Post.dart';
 
@@ -11,9 +16,57 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Map<String, dynamic> eventToMap(Event event) {
+  return {
+    'userid': event.userid,
+    'eventtitle': event.eventtitle,
+    'eventdetails': event.eventdetails,
+    'eventimage': event.eventimage,
+  };
+}
+  void Eventspost() {
+    List<Event> events = [
+      Event(
+          userid: 'kimani',
+          eventtitle: 'treeplanting',
+          eventdetails: 'save the world',
+          eventimage: 'images/tree.jpg'),
+      Event(
+          userid: 'John',
+          eventtitle: 'Watering trees',
+          eventdetails: 'Watering seedlings from the last tree planting event',
+          eventimage: 'images/tree.jpg'),
+      Event(
+          userid: 'kaleb',
+          eventtitle: 'treeplanting3',
+          eventdetails: 'save the world3',
+          eventimage: 'images/tree.jpg'),
+    ];
+
+    for (var i = 0; i < events.length; i++) {
+       
+      DatabaseReference eventsref =
+          FirebaseDatabase.instance.ref().child('Events');
+
+       // Use push method to generate a unique key for each event
+    var newEventRef = eventsref.push();
+
+    // Set the event data as a child of the unique key
+    newEventRef.update(eventToMap(events[i]));
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    Eventspost();
+  }
+
   bool showFeedButton = false;
   bool showEventsButton = false;
   int selectedIndex = 0;
+  final real = Get.put(Realtime());
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                 width: 300,
                 child: Stack(
                   children: [
-                    selectedIndex == 0 ? const PostList() : const EventList(),
+                    selectedIndex == 0 ?  PostList() :  EventList(),
                     Align(
                       alignment: Alignment.bottomRight,
                       child: Padding(

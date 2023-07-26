@@ -1,112 +1,120 @@
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 
 import 'event_model.dart';
 
 class PostCard extends StatelessWidget {
-  final int index;
-  const PostCard({super.key, required this.index});
+  final Map post;
+  const PostCard({super.key, required this.post});
 
   @override
   Widget build(BuildContext context) {
-    
-    if (Post.posts[index].photo == null) {
+    if (post['photo'] == null) {
       return Container(
-      width: 300,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: Colors.greenAccent,
-          width: 3,
+        width: 300,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+            color: Colors.greenAccent,
+            width: 3,
+          ),
         ),
-      ),
-      child: Row(
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(0.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage('images/splash.jpg'),
-                )
-              ],
+        child: Row(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(0.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    backgroundImage: AssetImage('images/splash.jpg'),
+                  )
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: Column(
-              children: [
-                SizedBox(
-                  width: 300,
-                  child: Text(Post.posts[index].captions),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-    } else {
-        return Container(
-      width: 300,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: Colors.greenAccent,
-          width: 3,
-        ),
-      ),
-      child: Row(
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(0.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage('images/splash.jpg'),
-                )
-              ],
-            ),
-          ),
-          Expanded(
-            child: Column(
-              children: [
-                SizedBox(
-                  width: 300,
-                  child: Text(Post.posts[index].captions),
-                ),
-                Container(
+            Expanded(
+              child: Column(
+                children: [
+                  SizedBox(
                     width: 300,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage(
-                            Post.posts[index].photo!,
-                          )),
-                    )),
-              ],
+                    child: Text(post['captions']),
+                  ),
+                ],
+              ),
             ),
+          ],
+        ),
+      );
+    } else {
+      return Container(
+        width: 300,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+            color: Colors.greenAccent,
+            width: 3,
           ),
-        ],
-      ),
-    );
+        ),
+        child: Row(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(0.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    backgroundImage: AssetImage('images/splash.jpg'),
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  SizedBox(
+                    width: 300,
+                    child: Text(post['captions']),
+                  ),
+                  Container(
+                      width: 300,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: AssetImage(
+                              post['photo']!,
+                            )),
+                      )),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
     }
-  
   }
 }
 
 class PostList extends StatelessWidget {
-  const PostList({super.key});
+  PostList({super.key});
+  final DatabaseReference _database = FirebaseDatabase.instance.ref();
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: Post.posts.length,
-        itemBuilder: (BuildContext context, int index) {
-          return PostCard(
-            index: index,
-          );
+    Query sortingBychild = _database.child('posts').orderByChild('photo');
+     Query sortingbyvalue= _database.child('posts').orderByValue();
+      Query sortingbyKey = _database.child('posts').orderByKey();
+
+    return FirebaseAnimatedList(
+        query: _database.child('posts'),
+       
+        itemBuilder: (BuildContext context, DataSnapshot snapshot,
+            Animation<double> animation, int index) {
+          Map Post = snapshot.value as Map;
+          Post['key'] = snapshot.key;
+
+          return PostCard(post: Post);
         });
   }
 }
