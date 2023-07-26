@@ -1,9 +1,8 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:realtimedb/realtime/CustomText.dart';
-import 'package:realtimedb/realtime/event_model.dart';
 
+import 'CustomText.dart';
 import 'controller/realtime_coontoller.dart';
 
 class AddPost extends StatefulWidget {

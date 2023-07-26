@@ -3,10 +3,11 @@ import 'dart:html';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:realtimedb/realtime/controller/realtime_coontoller.dart';
-import 'package:realtimedb/realtime/event_model.dart';
-import 'package:realtimedb/realtime/events.dart';
+import 'package:realtimedb/controller/realtime_coontoller.dart';
+
 import 'package:realtimedb/realtime/Post.dart';
+import 'event_model.dart';
+import 'events.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,6 +18,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Map<String, dynamic> eventToMap(Event event) {
+  
   return {
     'userid': event.userid,
     'eventtitle': event.eventtitle,

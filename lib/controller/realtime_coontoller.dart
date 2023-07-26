@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../event_model.dart';
+
 
 class Realtime extends GetxController {
   static Realtime instance = Get.find();

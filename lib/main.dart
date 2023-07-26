@@ -2,9 +2,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:realtimedb/realtime/controller/realtime_coontoller.dart';
-import 'package:realtimedb/realtime/homepage.dart';
-import 'package:realtimedb/realtime/add_post.dart';
+import 'package:realtimedb/controller/realtime_coontoller.dart';
+
+
+import 'add_post.dart';
+import 'homepage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
