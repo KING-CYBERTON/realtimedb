@@ -41,10 +41,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       getPages: [
-        GetPage(name: '/', page: () => const HomePage()),
+   
         GetPage(name: '/AddPost', page: () => const AddPost()),
       ],
-      initialRoute: '/',
+     home: const HomePage(),
     );
   }
 }
