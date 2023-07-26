@@ -1,13 +1,12 @@
-import 'dart:html';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:realtimedb/controller/realtime_coontoller.dart';
 
-import 'package:realtimedb/realtime/Post.dart';
 import 'event_model.dart';
 import 'events.dart';
+import 'post.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -18,14 +17,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Map<String, dynamic> eventToMap(Event event) {
-  
-  return {
-    'userid': event.userid,
-    'eventtitle': event.eventtitle,
-    'eventdetails': event.eventdetails,
-    'eventimage': event.eventimage,
-  };
-}
+    return {
+      'userid': event.userid,
+      'eventtitle': event.eventtitle,
+      'eventdetails': event.eventdetails,
+      'eventimage': event.eventimage,
+    };
+  }
+
   void Eventspost() {
     List<Event> events = [
       Event(
@@ -46,15 +45,14 @@ class _HomePageState extends State<HomePage> {
     ];
 
     for (var i = 0; i < events.length; i++) {
-       
       DatabaseReference eventsref =
           FirebaseDatabase.instance.ref().child('Events');
 
-       // Use push method to generate a unique key for each event
-    var newEventRef = eventsref.push();
+      // Use push method to generate a unique key for each event
+      var newEventRef = eventsref.push();
 
-    // Set the event data as a child of the unique key
-    newEventRef.update(eventToMap(events[i]));
+      // Set the event data as a child of the unique key
+      newEventRef.update(eventToMap(events[i]));
     }
   }
 
@@ -97,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                 width: 300,
                 child: Stack(
                   children: [
-                    selectedIndex == 0 ?  PostList() :  EventList(),
+                    selectedIndex == 0 ? PostList() : EventList(),
                     Align(
                       alignment: Alignment.bottomRight,
                       child: Padding(
