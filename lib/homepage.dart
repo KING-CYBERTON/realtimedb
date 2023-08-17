@@ -210,7 +210,7 @@ class MyBottomNavigationBar extends StatelessWidget {
                     ),
                   ],
                   border: Border.all(
-                    color: selectedIndex == 1
+                    color: selectedIndex == 0
                         ? Colors.greenAccent
                         : Colors.transparent,
                     width: 3,
@@ -227,3 +227,4 @@ class MyBottomNavigationBar extends StatelessWidget {
     );
   }
 }
+
