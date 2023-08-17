@@ -1,4 +1,3 @@
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -85,7 +84,6 @@ class _HomePageState extends State<HomePage> {
                     backgroundImage: AssetImage('images/splash.jpg'),
                   ),
                   const Spacer(),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.logout))
                 ],
               ),
             ),
@@ -102,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.all(16.0),
                         child: FloatingActionButton(
                           onPressed: () {
-                            Get.toNamed('/AddPost');
+                            //   Get.toNamed('/AddPost');
                           },
                           tooltip: 'Post',
                           child: const Icon(Icons.add),
@@ -162,7 +160,7 @@ class MyBottomNavigationBar extends StatelessWidget {
         children: [
           Expanded(
             child: GestureDetector(
-              onTap: () => onIndexChanged(0),
+              onTap: () => onIndexChanged(1),
               child: Container(
                 constraints: const BoxConstraints(
                     maxWidth:
@@ -194,7 +192,7 @@ class MyBottomNavigationBar extends StatelessWidget {
           ),
           Expanded(
             child: GestureDetector(
-              onTap: () => onIndexChanged(1),
+              onTap: () => onIndexChanged(0),
               child: Container(
                 constraints: const BoxConstraints(
                     maxWidth:
