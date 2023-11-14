@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                 width: 300,
                 child: Stack(
                   children: [
-                    selectedIndex == 0 ? PostList() : EventList(),
+                    selectedIndex == 0 ?EventList(): PostList(),
                     Align(
                       alignment: Alignment.bottomRight,
                       child: Padding(
@@ -160,7 +160,7 @@ class MyBottomNavigationBar extends StatelessWidget {
         children: [
           Expanded(
             child: GestureDetector(
-              onTap: () => onIndexChanged(1),
+              onTap: () => onIndexChanged(0),
               child: Container(
                 constraints: const BoxConstraints(
                     maxWidth:
@@ -178,7 +178,7 @@ class MyBottomNavigationBar extends StatelessWidget {
                     ),
                   ],
                   border: Border.all(
-                    color: selectedIndex == 0
+                    color: selectedIndex == 1
                         ? Colors.greenAccent
                         : Colors.transparent,
                     width: 3,
