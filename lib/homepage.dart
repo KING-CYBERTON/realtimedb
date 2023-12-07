@@ -5,7 +5,7 @@ import 'package:realtimedb/controller/realtime_coontoller.dart';
 
 import 'event_model.dart';
 import 'events.dart';
-import 'post.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -30,17 +30,17 @@ class _HomePageState extends State<HomePage> {
           userid: 'kimani',
           eventtitle: 'treeplanting',
           eventdetails: 'save the world',
-          eventimage: 'images/tree.jpg'),
+          eventimage: 'assets/images/tree.jpg'),
       Event(
           userid: 'John',
           eventtitle: 'Watering trees',
           eventdetails: 'Watering seedlings from the last tree planting event',
-          eventimage: 'images/tree.jpg'),
+          eventimage: 'assets/images/tree.jpg'),
       Event(
           userid: 'kaleb',
           eventtitle: 'treeplanting3',
           eventdetails: 'save the world3',
-          eventimage: 'images/tree.jpg'),
+          eventimage: 'assets/images/tree.jpg'),
     ];
 
     for (var i = 0; i < events.length; i++) {
@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                       Align(
                         alignment: Alignment.center,
                         child: CircleAvatar(
-                          backgroundImage: AssetImage('images/splash.jpg'),
+                          backgroundImage: AssetImage('assets/images/splash.jpg'),
                         ),
                       ),
                     ],
@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                 width: 300,
                 child: Stack(
                   children: [
-                    selectedIndex == 0 ? EventList() : PostList(),
+                    selectedIndex == 0 ? EventList() : Container(),
                     Align(
                       alignment: Alignment.bottomRight,
                       child: Padding(

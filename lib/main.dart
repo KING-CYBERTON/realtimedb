@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:realtimedb/controller/realtime_coontoller.dart';
 
 
-import 'add_post.dart';
+
 import 'homepage.dart';
 
 void main() async {
@@ -41,10 +41,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.green,
-      ),
+      ), 
       getPages: [
-   
-        GetPage(name: '/AddPost', page: () => const AddPost()),
+   //add pages here
       ],
      home: const HomePage(),
     );
