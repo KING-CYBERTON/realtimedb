@@ -74,16 +74,22 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             Container(
-              color: Colors.greenAccent.withOpacity(0.5),
+              color: const Color.fromRGBO(105, 240, 174, 1).withOpacity(0.5),
               width: 300,
-              child: Row(
+              child: Stack(
                 children: [
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.person)),
-                  const Spacer(),
-                  const CircleAvatar(
-                    backgroundImage: AssetImage('images/splash.jpg'),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: CircleAvatar(
+                          backgroundImage: AssetImage('images/splash.jpg'),
+                        ),
+                      ),
+                    ],
                   ),
-                  const Spacer(),
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.person)),
                 ],
               ),
             ),
@@ -93,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                 width: 300,
                 child: Stack(
                   children: [
-                    selectedIndex == 0 ?EventList(): PostList(),
+                    selectedIndex == 0 ? EventList() : PostList(),
                     Align(
                       alignment: Alignment.bottomRight,
                       child: Padding(
@@ -227,4 +233,3 @@ class MyBottomNavigationBar extends StatelessWidget {
     );
   }
 }
-
