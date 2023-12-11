@@ -39,7 +39,7 @@ class Realtime extends GetxController {
     }
   }
 
-  void addPost(String userId, String photo, String captions) async {
+  void addPost(String userId, String photo, String captions, ) async {
     try {
         Map<String, dynamic> postData = {
           

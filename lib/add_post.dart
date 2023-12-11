@@ -23,17 +23,6 @@ class _AddPostState extends State<AddPost> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Adding post'),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.post_add_rounded,
-                color: Color.fromARGB(255, 7, 7, 7),
-              ))
-        ],
-      ),
       body: Center(
         child: Container(
           width: 300,
@@ -71,7 +60,7 @@ class _AddPostState extends State<AddPost> {
                   //should be a list of selected photos
                    photo.isNotEmpty
                     ? Image.network(photo)
-                    : Image.asset('images/Splash.jpg'),
+                    : Image.asset('assets/images/Splash.jpg'),
 
                   const SizedBox(height: 20),
                   DropdownButton<String>(
@@ -92,11 +81,22 @@ class _AddPostState extends State<AddPost> {
                   ElevatedButton(
                       onPressed: () async {
                         String captions = captioncontroller.text.trim();
-                        if (photo != null && photo.isNotEmpty) {
-                           controller.addPost(userid, photo, captions);
-                        } else {
-                          controller.addPost2(userid,captions);
-                        }
+                        
+                        if (captions.isNotEmpty ) {
+  if (photo != null && photo.isNotEmpty) {
+     controller.addPost(userid, photo, captions);
+  } else {
+    controller.addPost2(userid,captions);
+  }
+}else{
+    Get.snackbar(
+          'Error',
+          'Please add a caption',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.redAccent.withOpacity(0.2),
+          colorText: Colors.black,
+        );
+}
                         
                       },
                       child: const Text('Publish'))

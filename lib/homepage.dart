@@ -1,4 +1,3 @@
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,17 +30,17 @@ class _HomePageState extends State<HomePage> {
           userid: 'kimani',
           eventtitle: 'treeplanting',
           eventdetails: 'save the world',
-          eventimage: 'images/tree.jpg'),
+          eventimage: 'assets/images/tree.jpg'),
       Event(
           userid: 'John',
           eventtitle: 'Watering trees',
           eventdetails: 'Watering seedlings from the last tree planting event',
-          eventimage: 'images/tree.jpg'),
+          eventimage: 'assets/images/tree.jpg'),
       Event(
           userid: 'kaleb',
           eventtitle: 'treeplanting3',
           eventdetails: 'save the world3',
-          eventimage: 'images/tree.jpg'),
+          eventimage: 'assets/images/tree.jpg'),
     ];
 
     for (var i = 0; i < events.length; i++) {
@@ -105,7 +104,10 @@ class _HomePageState extends State<HomePage> {
                             Get.toNamed('/AddPost');
                           },
                           tooltip: 'Post',
-                          child: const Icon(Icons.add),
+                          child: const Icon(
+                            Icons.post_add_rounded,
+                            color: Color.fromARGB(255, 7, 7, 7),
+                          ),
                         ),
                       ),
                     ),
@@ -229,6 +231,3 @@ class MyBottomNavigationBar extends StatelessWidget {
     );
   }
 }
-
-
-
