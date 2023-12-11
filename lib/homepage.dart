@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                       Align(
                         alignment: Alignment.center,
                         child: CircleAvatar(
-                          backgroundImage: AssetImage('assets/images/splash.jpg'),
+                          backgroundImage: AssetImage('assets/images/Splash.jpg'),
                         ),
                       ),
                     ],

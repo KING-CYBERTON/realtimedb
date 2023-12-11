@@ -77,7 +77,7 @@ class EventList extends StatelessWidget {
     Query sortingbyvalue = _database.child('Events').orderByValue();
     Query sortingbyKey = _database.child('Events').orderByKey();
     return FirebaseAnimatedList(
-        query: sortingBychild.limitToLast(10),
+        query: sortingBychild.limitToLast(100),
         itemBuilder: (BuildContext context, DataSnapshot snapshot,
             Animation<double> animation, int index) {
           Map Event = snapshot.value as Map;
