@@ -17,7 +17,7 @@ class Realtime extends GetxController {
         'userid': userId,
         'captions': captions,
       };
-      await _database.child('posts').push().set(postData).then((_) {
+      await _database.child('Posts').push().set(postData).then((_) {
         Get.snackbar(
           'Success',
           'Info has been updated',
