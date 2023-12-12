@@ -15,20 +15,20 @@ class Event {
 
   static List<Event> events = [
     Event(
-        userid: 'kimani', 
+        userid: 'Kimani', 
         eventtitle: 'treeplanting',
         eventdetails: 'save the world',
-        eventimage: 'images/tree.jpg'),
+        eventimage: 'assets/images/tree.jpg'),
     Event(
-        userid: 'kimani2',
+        userid: 'Ken',
         eventtitle: 'treeplanting2',
         eventdetails: 'save the world2',
-        eventimage: 'images/tree.jpg'),
+        eventimage: 'assets/images/tree.jpg'),
     Event(
-        userid: 'kimani3',
+        userid: 'John',
         eventtitle: 'treeplanting3',
         eventdetails: 'save the world3',
-        eventimage: 'images/tree.jpg'),
+        eventimage: 'assets/images/tree.jpg'),
   ];
 }
 
