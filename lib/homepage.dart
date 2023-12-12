@@ -2,7 +2,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:realtimedb/controller/realtime_coontoller.dart';
-
 import 'event_model.dart';
 import 'events.dart';
 import 'post.dart';
@@ -81,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                   IconButton(onPressed: () {}, icon: const Icon(Icons.person)),
                   const Spacer(),
                   const CircleAvatar(
-                    backgroundImage: AssetImage('images/splash.jpg'),
+                    backgroundImage: AssetImage('assets/images/splash.jpg'),
                   ),
                   const Spacer(),
                   IconButton(onPressed: () {}, icon: const Icon(Icons.logout))

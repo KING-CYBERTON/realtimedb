@@ -44,7 +44,7 @@ class _AddPostState extends State<AddPost> {
                           onPressed: () {}, icon: const Icon(Icons.person)),
                       const Spacer(),
                       const CircleAvatar(
-                        backgroundImage: AssetImage('images/splash.jpg'),
+                        backgroundImage: AssetImage('assets/images/splash.jpg'),
                       ),
                       const Spacer(),
                       IconButton(
@@ -58,9 +58,9 @@ class _AddPostState extends State<AddPost> {
                       textController: captioncontroller),
 
                   //should be a list of selected photos
-                   photo.isNotEmpty
-                    ? Image.network(photo)
-                    : Image.asset('assets/images/Splash.jpg'),
+                  photo.isNotEmpty
+                      ? Image.network(photo)
+                      : Image.asset('assets/images/Splash.jpg'),
 
                   const SizedBox(height: 20),
                   DropdownButton<String>(
@@ -81,23 +81,22 @@ class _AddPostState extends State<AddPost> {
                   ElevatedButton(
                       onPressed: () async {
                         String captions = captioncontroller.text.trim();
-                        
-                        if (captions.isNotEmpty ) {
-  if (photo != null && photo.isNotEmpty) {
-     controller.addPost(userid, photo, captions);
-  } else {
-    controller.addPost2(userid,captions);
-  }
-}else{
-    Get.snackbar(
-          'Error',
-          'Please add a caption',
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.redAccent.withOpacity(0.2),
-          colorText: Colors.black,
-        );
-}
-                        
+
+                        if (captions.isNotEmpty) {
+                          if (photo != null && photo.isNotEmpty) {
+                            controller.addPost(userid, photo, captions);
+                          } else {
+                            controller.addPost2(userid, captions);
+                          }
+                        } else {
+                          Get.snackbar(
+                            'Error',
+                            'Please add a caption',
+                            snackPosition: SnackPosition.TOP,
+                            backgroundColor: Colors.redAccent.withOpacity(0.2),
+                            colorText: Colors.black,
+                          );
+                        }
                       },
                       child: const Text('Publish'))
                 ]),
