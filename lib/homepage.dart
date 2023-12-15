@@ -72,6 +72,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Center(
         child: Column(
+              
           children: [
             Container(
               color: const Color.fromRGBO(105, 240, 174, 1).withOpacity(0.5),
