@@ -149,9 +149,7 @@ class MyBottomNavigationBar extends StatelessWidget {
       constraints: const BoxConstraints(maxWidth: 300),
       height: 70,
       decoration: BoxDecoration(
-         image: const DecorationImage(
-            image: AssetImage("assets/images/Splash.jpg"), 
-            fit: BoxFit.fill),
+   
         borderRadius: BorderRadius.circular(9),
         boxShadow: [
           BoxShadow(
