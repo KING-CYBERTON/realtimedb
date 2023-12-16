@@ -75,15 +75,18 @@ class _HomePageState extends State<HomePage> {
             Container(
               color: Colors.greenAccent.withOpacity(0.5),
               width: 300,
-              child: Row(
+              child: Stack(
                 children: [
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.person)),
-                  const Spacer(),
-                  const CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/splash.jpg'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const CircleAvatar(
+                        backgroundImage: AssetImage('assets/images/Splash.jpg'),
+                      ),
+             
+                    ],
                   ),
-                  const Spacer(),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.logout))
+                    IconButton(onPressed: () {}, icon: const Icon(Icons.person)),
                 ],
               ),
             ),
